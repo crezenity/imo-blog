@@ -1,0 +1,48 @@
+<%
+// the skills information of theme _config.yml.
+var mySkills = theme.mySkills.data;
+var topSkillArr = [];
+%>
+<div class="my-skills">
+    <div class="title center-align" data-aos="zoom-in-up">
+        <img src="/medias/digimoclub.png" alt="<%- config.author %>" class="responsive-img avatar-img">
+    </div>
+    <div class="row">
+        <div class="col s12 m6 l6" data-aos="fade-up">
+        </div>
+    </div>
+    <%- partial('_widget/my-projects') %>
+    <%- partial('_widget/adsense2') %>
+    <%
+    /**
+     * Determine if an element is included in the array.
+     *
+     * @param arr array
+     * @param value value
+     */
+    var isInArray = function (arr, value) {
+        for (var i = 0; i < arr.length; i++) {
+            if (value == arr[i]) {
+                return true;
+            }
+        }
+        return false;
+    }
+    %>
+
+    <% if (site.tags) { %>
+    <div class="other-skills chip-container" data-aos="zoom-in-up">
+        <div class="sub-title center-align"><i class="fa fa-book"></i>&nbsp;&nbsp;<%- __('otherSkills') %></div>
+        <div class="tag-chips center-align">
+            <% site.tags.map(function(tag) { %>
+            <% if (!isInArray(topSkillArr, tag.name)) { %>
+            <a href="<%- url_for(tag.path) %>" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default"><%- tag.name %></span>
+            </a>
+            <% } %>
+            <% }); %>
+        </div>
+    </div>
+    <% } %>
+
+</div>

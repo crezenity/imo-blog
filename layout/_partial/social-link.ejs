@@ -1,0 +1,27 @@
+<% if (theme.socialLink.github) { %>
+<a href="<%= theme.socialLink.github %>" class="tooltipped" target="_blank" data-tooltip="Follow Me On GitHub"
+    data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<% } %>
+
+<% if (theme.socialLink.email) { %>
+<a href="https://www.facebook.com/<%= theme.socialLink.email %>" class="tooltipped" target="_blank"
+    data-tooltip="My Fanpage" data-position="top" data-delay="50">
+    <i class="fa fa-facebook"></i>
+</a>
+<% } %>
+
+<% if (theme.socialLink.qq) { %>
+<a href="https://t.me/<%= theme.socialLink.qq %>" class="tooltipped" data-tooltip="My Channel" data-position="top"
+    data-delay="50">
+    <i class="fa fa-telegram"></i>
+</a>
+<% } %>
+
+<% if (config.feed && config.feed.path == 'atom.xml') { %>
+<a href="<%- url_for('/atom.xml') %>" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top"
+    data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+<% } %>
