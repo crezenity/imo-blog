@@ -28,15 +28,15 @@
     var pageTitle = title ? title + ' | ' + config.title : config.title;
 
     // keywords.
-    var keyWords = config.keywords ? config.keywords : config.title;
-    keyWords = title ? title  + ', ' + keyWords : keyWords;
+    var keyWords = config.keywords ? config.keywords : page.keywords;
+    keyWords = page.keywords ? page.keywords  + ', ' + keyWords : keyWords;
 
     // description.
     var description = null;
     if (page.hasOwnProperty('__post') && page.__post) {
-        description = strip_html(page.content).substring(0, 120);
+        description = page.summary;
     }
-    description = description ? description : pageTitle;
+    description = description ? description : config.description;
 
     let iconType = 'image/png'
     let faviconExt = theme.favicon.substr(theme.favicon.lastIndexOf('.') + 1, theme.favicon.length)
@@ -55,7 +55,9 @@
     } else {
         // more definitions
     }
+
 %>
+
 
 <head>
     <meta charset="utf-8">
@@ -83,6 +85,7 @@
     <meta content='en_US' property='og:locale:alternate' />
     <meta content='Indonesia' name='geo.placename' />
     <meta content='general' name='rating' />
+    <meta content="<%= page.img %>" property="og:image" />
     <title><%= pageTitle %></title>
     <link rel="icon" type="<%= iconType %>" href="<%- theme.favicon %>">
     <%- autoCanonical(config, page) %>
@@ -106,7 +109,6 @@
 
         %>
     </style>
-
     <script src="<%- theme.libs.js.jquery %>"></script>
     <script type="application/ld+json">
         {
@@ -119,6 +121,27 @@
                 "http://instagram.com/digimoclub",
                 "http://www.youtube.com/channel/UCT0QbgIT7GUp0xOhKhKBBsg",
                 "http://twitter.com/digimoclub"
+            ]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "ItemList",
+            "itemListElement": [{
+                    "@type": "SiteNavigationElement",
+                    "position": 1,
+                    "name": "Wawasan",
+                    "description": "Kategori yang berisi Tips dan Tutorial",
+                    "url": "https://www.digimoclub.com/categories/Wawasan/"
+                },
+                {
+                    "@type": "SiteNavigationElement",
+                    "position": 2,
+                    "name": "Jamstack",
+                    "description": "Tutorial Membuat Static Site Generator",
+                    "url": "https://www.digimoclub.com/categories/Jamstack/"
+                }
             ]
         }
     </script>

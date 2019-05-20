@@ -61,19 +61,25 @@
                 </div>
                 <% } %>
             </div>
-        </div>
+        </div><br><br>
+
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;<%- __('toc') %>
-                    <div id="toc-content"><%- toc(page.content) %></div>
-                </div>
+                <div class="toc-title center-align"><button class="waves-effect waves-light btn red darken-4"><i
+                            class="fa fa-angle-double-down"></i>&nbsp;&nbsp;DAFTAR ISI&nbsp;&nbsp;<i
+                            class="fa fa-angle-double-down"></i>
+                    </button>
+                </div><br>
+                <div id="toc-content"><%- toc(page.content) %></div>
+                <br>
                 <%- partial('_widget/adsense2') %>
                 <%- page.content %><br>
                 <%- partial('_partial/share') %>
-            </div>
-            <hr />
 
+            </div>
+
+            <hr>
             <% if (theme.reward && theme.reward.enable) { %>
             <%- partial('_partial/reward') %>
             <% } %>
@@ -95,53 +101,54 @@
             </div>
         </div>
     </div>
-    <%- partial('_partial/prev-next') %>
+</div>
+<%- partial('_partial/prev-next') %>
 
-    <div class="card" data-aos="fade-up">
-        <div class="card-content">
-            <%- partial('_widget/related') %>
-        </div>
+<div class="card" data-aos="fade-up">
+    <div class="card-content">
+        <%- partial('_widget/related') %>
     </div>
-    <% if (theme.disqus.enable) { %>
-    <%- partial('_partial/disqus') %>
-    <% } %>
-    <% if (theme.copyright.enable) { %>
-    <script>
-        $('#articleContent').on('copy', function (e) {
-            // IE8 or earlier browser is 'undefined'
-            if (typeof window.getSelection === 'undefined') return;
+</div>
+<% if (theme.disqus.enable) { %>
+<%- partial('_partial/disqus') %>
+<% } %>
+<% if (theme.copyright.enable) { %>
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
 
-            var selection = window.getSelection();
-            // if the selection is short let's not annoy our users.
-            if (('' + selection).length < Number.parseInt('<%- theme.copyright.minCharNumber %>')) {
-                return;
-            }
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('<%- theme.copyright.minCharNumber %>')) {
+            return;
+        }
 
-            // create a div outside of the visible area and fill it with the selected text.
-            var bodyElement = document.getElementsByTagName('body')[0];
-            var newdiv = document.createElement('div');
-            newdiv.style.position = 'absolute';
-            newdiv.style.left = '-99999px';
-            bodyElement.appendChild(newdiv);
-            newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
 
-            // we need a <pre> tag workaround.
-            // otherwise the text inside "pre" loses all the line breaks!
-            if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
-                newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
-            }
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
 
-            var url = document.location.href;
-            newdiv.innerHTML += '<br />' +
-                '<%- __("from")  %>: <%- config.title %><br />' +
-                '<%- __("author")  %>: <%- config.author %><br />' +
-                '<%- __("link")  %>: <a href="' + url + '">' + url + '</a><br />' +
-                '<%- theme.copyright.description %>';
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />' +
+            '<%- __("from")  %>: <%- config.title %><br />' +
+            '<%- __("author")  %>: <%- config.author %><br />' +
+            '<%- __("link")  %>: <a href="' + url + '">' + url + '</a><br />' +
+            '<%- theme.copyright.description %>';
 
-            selection.selectAllChildren(newdiv);
-            window.setTimeout(function () {
-                bodyElement.removeChild(newdiv);
-            }, 200);
-        });
-    </script>
-    <% } %>
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {
+            bodyElement.removeChild(newdiv);
+        }, 200);
+    });
+</script>
+<% } %>

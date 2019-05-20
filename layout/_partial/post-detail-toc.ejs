@@ -16,12 +16,12 @@
         outline: none;
     }
 
-    .toc-fixed {
+    .side-fixed {
         position: fixed;
         top: 130px;
     }
 
-    .toc-widget {
+    .side-widget {
         padding-left: 20px;
         width: 368px;
     }
@@ -30,11 +30,10 @@
         font-size: 20px;
         font-weight: bold;
         text-transform: Uppercase;
-        color: #000;
     }
 
-    .toc-widget ol {
-        padding: 0;
+    #toc-content {
+        border: 2px double #870000;
     }
 
     #toc-content ol {
@@ -55,7 +54,6 @@
 
     .adsense {
         margin: 35px 0 15px 0;
-        padding-left: 20px;
         width: 368px;
     }
 
@@ -156,10 +154,10 @@
     <div class="col l3 hide-on-med-and-down">
         <div class="adsense">
             <div class="card-content">
-                <%- partial('_widget/adsense5') %>
+                <%- partial('_widget/adsense4') %>
             </div>
         </div>
-        <div class="toc-widget">
+        <div class="side-widget">
             <div class="card">
                 <div class="card-content center-align">
                     <div class="avatar">
@@ -180,7 +178,8 @@
                     <div class="social-link" data-aos="zoom-in-left">
                         <div id="reward">
                             <a href="#rewardModal"
-                                class="reward-link modal-trigger btn-large waves-effect red darken-4 pulse">JOIN ME</a>
+                                class="reward-link modal-trigger btn-large waves-effect red darken-4 pulse">JOIN
+                                ME</a>
 
                             <!-- Modal Structure -->
                             <div id="rewardModal" class="modal">
@@ -220,15 +219,15 @@
 
 <script>
     // Set scroll toc fixed.
-    let tocHeight = parseInt($(window).height() * 1.1 - 130);
-    let $tocWidget = $('.toc-widget');
+    let tocHeight = parseInt($(window).height() * 0.8 - 130);
+    let $tocWidget = $('.side-widget');
     $(window).scroll(function () {
         let scroll = $(window).scrollTop();
         /* add post toc fixed. */
         if (scroll > tocHeight) {
-            $tocWidget.addClass('toc-fixed');
+            $tocWidget.addClass('side-fixed');
         } else {
-            $tocWidget.removeClass('toc-fixed');
+            $tocWidget.removeClass('side-fixed');
         }
     });
     $(function () {
